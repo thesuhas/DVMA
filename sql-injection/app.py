@@ -8,12 +8,13 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/api/sqlquery",methods=["POST"])
 def list_add_user():
+    print(request.method)
     if request.method == 'POST':
         req = request.get_json()["user_id"]
         # ip = input()
         query = "SELECT first_name,last_name FROM users where user_id = "+req
         print(query)
-        engine = create_engine("mysql+pymysql://thesuhas:123456@172.22.0.2:2000/dvwa")
+        engine = create_engine("mysql+pymysql://root:123456@172.22.0.2:3306/dvwa")
         y = []
         with engine.connect() as con:
             x = con.execute(query)
